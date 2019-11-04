@@ -5,17 +5,18 @@ G = []
 color = []
 d = []
 pi = []
+f = []
 time = 0
 tam = 0
 
 def DFS():
-  global tam, G, color, d, pi, time
+  global tam, G, color, d, f, pi, time
   
   for u in range(tam):
     color.append('w')
     d.append(0)
+    f.append(0)
     pi.append('')
-
   time = 0
 
   for u in range(tam):
@@ -35,34 +36,45 @@ def DFS_visita(U):
       DFS_visita(v)
 
   color[U] = 'b'
-    
-  
-#MAIN
-tam = int(input("Insira a quantidade de vértices do grafo: "))
+  time += 1
+  f[U] = time
 
-manual = input("\nDeseja inserir sua matriz de adjacencias manualmente[S/N]?\nCaso contrario, sera gerada uma matriz M[tam x tam] aleatória\n\n")
-if manual.upper()=="S":
-    for i in range(tam):
-        G.append([])
-        for j in range(tam):
-            entrada = int(input("G[{}][{}] = ".format(i,j)))
-            G[i].append(entrada)
-else:
-    """
-    Loop para atribuições aleatórias de 0 ou 1 na matriz de adjacências de um grafo
-    """
-    linha = "\nMatriz:\n\n"
-    for i in range(tam):
-        linha += "|"
-        G.append([])
-        for j in range(tam):
-            G[i].append(random.randint(0,1))
-            linha += str(G[i][j]) + "|"
-        linha+="\n"
+tam = 6
+G = [
+    [0,1,0,1,0,0],
+    [0,0,0,0,1,0],
+    [0,0,0,0,1,1],
+    [0,1,0,0,0,0],
+    [0,0,0,1,0,0],
+    [0,0,0,0,0,1],
+    ]
+#MAIN
+# tam = int(input("Insira a quantidade de vértices do grafo: "))
+
+# manual = input("\nDeseja inserir sua matriz de adjacencias manualmente[S/N]?\nCaso contrario, sera gerada uma matriz M[tam x tam] aleatória\n\n")
+# if manual.upper()=="S":
+#     for i in range(tam):
+#         G.append([])
+#         for j in range(tam):
+#             entrada = int(input("G[{}][{}] = ".format(i,j)))
+#             G[i].append(entrada)
+# else:
+#     """
+#     Loop para atribuições aleatórias de 0 ou 1 na matriz de adjacências de um grafo
+#     """
+#     linha = "\nMatriz:\n\n"
+#     for i in range(tam):
+#         linha += "|"
+#         G.append([])
+#         for j in range(tam):
+#             G[i].append(random.randint(0,1))
+#             linha += str(G[i][j]) + "|"
+#         linha+="\n"
     
-    #Impressão da matriz de adjacências para o usuario
-    print(linha)
+#     #Impressão da matriz de adjacências para o usuario
+#     print(linha)
 DFS()
 print("\nd: "+str(d))
+print("f: "+str(f))
 print("pi: "+str(pi))
 print("c: "+str(color))
