@@ -60,6 +60,7 @@ def DFS_visita(U):
 #     [0,0,0,1,0,0],
 #     [0,0,0,0,0,1],
 #     ]
+
 #MAIN
 tam = int(input("Insira a quantidade de vértices do grafo: "))
 
